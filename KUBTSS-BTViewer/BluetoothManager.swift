@@ -13,7 +13,9 @@ let pUUID = UUIDs()
 final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     @Published var status:String = "NOT CONNECTED"
+    @Published var deviceName:String = "----"
     @Published var altimeter:String = "----"
+    @Published var gps:String = "----"
     @Published var CONNECTED:Bool = false
     
     var centralMg: CBCentralManager?
@@ -26,8 +28,10 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     }
     
     func connectPeripheral() {
+        centralMg?.scanForPeripherals(withServices: [pUUID.service])
         if CONNECTED || kubtssMainPeripheral == nil { return }
         centralMg?.connect(kubtssMainPeripheral!, options: nil)
+        status = "CONNECTED"
     }
     
     func disconnectPeripheral() {
@@ -36,85 +40,89 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             kubtssMainPeripheral = nil
         }
         CONNECTED = false
+        status = "NOT CONNECTED"
     }
     
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-      switch central.state {
+        switch central.state {
         case .unknown:
-          print("central.state is .unknown")
+            print("central.state is .unknown")
         case .resetting:
-          print("central.state is .resetting")
+            print("central.state is .resetting")
         case .unsupported:
-          print("central.state is .unsupported")
+            print("central.state is .unsupported")
         case .unauthorized:
-          print("central.state is .unauthorized")
+            print("central.state is .unauthorized")
         case .poweredOff:
-          print("central.state is .poweredOff")
+            print("central.state is .poweredOff")
         case .poweredOn:
-          print("central.state is .poweredOn")
+            print("central.state is .poweredOn")
             centralMg?.scanForPeripherals(withServices: [pUUID.service])
-      }
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String: Any], rssi RSSI: NSNumber) {
-      print(peripheral)
-      kubtssMainPeripheral = peripheral
-      peripheral.delegate = self
+        print(peripheral)
+        kubtssMainPeripheral = peripheral
+        peripheral.delegate = self
         centralMg?.stopScan()
         centralMg?.connect(kubtssMainPeripheral!, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-      print("Connected!")
+        print("Connected!")
         status = "CONNECTED"
-      peripheral.discoverServices(nil)
+        deviceName = peripheral.name!
+        peripheral.discoverServices(nil)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-      guard let services = peripheral.services else { return }
-
-      for service in services {
-        print(service)
-        peripheral.discoverCharacteristics(nil, for: service)
-      }
+        guard let services = peripheral.services else { return }
+        
+        for service in services {
+            print(service)
+            peripheral.discoverCharacteristics(nil, for: service)
+        }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
                     error: Error?) {
-      guard let characteristics = service.characteristics else { return }
-    
-      for characteristic in characteristics {
-        print(characteristic)
-//        if characteristic.properties.contains(.read) {
-//          print("\(characteristic.uuid): properties contains .read")
-//        }
-        if characteristic.properties.contains(.notify) {
-          print("\(characteristic.uuid): properties contains .notify")
-          peripheral.setNotifyValue(true, for: characteristic)
+        guard let characteristics = service.characteristics else { return }
+        
+        for characteristic in characteristics {
+            print(characteristic)
+            //        if characteristic.properties.contains(.read) {
+            //          print("\(characteristic.uuid): properties contains .read")
+            //        }
+            if characteristic.properties.contains(.notify) {
+                print("\(characteristic.uuid): properties contains .notify")
+                peripheral.setNotifyValue(true, for: characteristic)
+            }
+            //        peripheral.readValue(for: characteristic)
         }
-//        peripheral.readValue(for: characteristic)
-      }
         CONNECTED = true
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
                     error: Error?) {
-      switch characteristic.uuid {
-      case pUUID.char_altimeter:
-  //        print(characteristic.value ?? "no value")
-        print(decodeBytes(from: characteristic) )
-        altimeter = decodeBytes(from: characteristic)
+        switch characteristic.uuid {
+        case pUUID.char_altimeter:
+            print(decodeBytes(from: characteristic) )
+            altimeter = decodeBytes(from: characteristic)
+        case pUUID.char_gps:
+            print(decodeBytes(from: characteristic) )
+            gps = decodeBytes(from: characteristic)
         default:
-          print("Unhandled Characteristic UUID: \(characteristic.uuid)")
-      }
+            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+        }
     }
     
     private func decodeBytes(from characteristic: CBCharacteristic) -> String {
-      guard let characteristicData = characteristic.value,
-        let byte = characteristicData.first else { return "Error" }
-
-      return "\(byte)"
+        guard let characteristicData = characteristic.value,
+              let byte = characteristicData.first else { return "Error" }
+        
+        return "\(byte)"
     }
 }
