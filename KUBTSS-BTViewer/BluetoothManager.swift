@@ -12,13 +12,30 @@ let pUUID = UUIDs()
 
 final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
-    var centralMg: CBCentralManager!
-    var kubtssMainPeriferal: CBPeripheral!
+    @Published var status:String = "NOT CONNECTED"
+    @Published var altimeter:String = "----"
+    @Published var CONNECTED:Bool = false
+    
+    var centralMg: CBCentralManager?
+    var kubtssMainPeripheral: CBPeripheral?
     
     override init() {
         super.init()
         centralMg = CBCentralManager(delegate: self, queue: nil)
-        kubtssMainPeriferal = nil
+        kubtssMainPeripheral = nil
+    }
+    
+    func connectPeripheral() {
+        if CONNECTED || kubtssMainPeripheral == nil { return }
+        centralMg?.connect(kubtssMainPeripheral!, options: nil)
+    }
+    
+    func disconnectPeripheral() {
+        if kubtssMainPeripheral != nil {
+            centralMg?.cancelPeripheralConnection(kubtssMainPeripheral!)
+            kubtssMainPeripheral = nil
+        }
+        CONNECTED = false
     }
     
     
@@ -36,22 +53,23 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
           print("central.state is .poweredOff")
         case .poweredOn:
           print("central.state is .poweredOn")
-            centralMg.scanForPeripherals(withServices: [pUUID.service])
+            centralMg?.scanForPeripherals(withServices: [pUUID.service])
       }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String: Any], rssi RSSI: NSNumber) {
       print(peripheral)
-      kubtssMainPeriferal = peripheral
-      kubtssMainPeriferal.delegate = self
-        centralMg.stopScan()
-        centralMg.connect(kubtssMainPeriferal)
+      kubtssMainPeripheral = peripheral
+      peripheral.delegate = self
+        centralMg?.stopScan()
+        centralMg?.connect(kubtssMainPeripheral!, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
       print("Connected!")
-      kubtssMainPeriferal.discoverServices(nil)
+        status = "CONNECTED"
+      peripheral.discoverServices(nil)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -66,18 +84,19 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
                     error: Error?) {
       guard let characteristics = service.characteristics else { return }
-
+    
       for characteristic in characteristics {
         print(characteristic)
-        if characteristic.properties.contains(.read) {
-          print("\(characteristic.uuid): properties contains .read")
-        }
+//        if characteristic.properties.contains(.read) {
+//          print("\(characteristic.uuid): properties contains .read")
+//        }
         if characteristic.properties.contains(.notify) {
           print("\(characteristic.uuid): properties contains .notify")
           peripheral.setNotifyValue(true, for: characteristic)
         }
-        peripheral.readValue(for: characteristic)
+//        peripheral.readValue(for: characteristic)
       }
+        CONNECTED = true
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
@@ -86,6 +105,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
       case pUUID.char_altimeter:
   //        print(characteristic.value ?? "no value")
         print(decodeBytes(from: characteristic) )
+        altimeter = decodeBytes(from: characteristic)
         default:
           print("Unhandled Characteristic UUID: \(characteristic.uuid)")
       }
