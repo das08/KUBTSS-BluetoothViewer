@@ -11,6 +11,8 @@
 		9792AF0C25CEE0F500BBCAC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF0B25CEE0F500BBCAC6 /* ContentView.swift */; };
 		9792AF0E25CEE0F900BBCAC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9792AF0D25CEE0F900BBCAC6 /* Assets.xcassets */; };
 		9792AF1125CEE0F900BBCAC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9792AF1025CEE0F900BBCAC6 /* Preview Assets.xcassets */; };
+		9792AF1A25CEE25B00BBCAC6 /* UUIDConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF1925CEE25B00BBCAC6 /* UUIDConfig.swift */; };
+		9792AF1D25CEE2D000BBCAC6 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		9792AF0D25CEE0F900BBCAC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9792AF1025CEE0F900BBCAC6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9792AF1225CEE0F900BBCAC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9792AF1925CEE25B00BBCAC6 /* UUIDConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDConfig.swift; sourceTree = "<group>"; };
+		9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				9792AF0D25CEE0F900BBCAC6 /* Assets.xcassets */,
 				9792AF1225CEE0F900BBCAC6 /* Info.plist */,
 				9792AF0F25CEE0F900BBCAC6 /* Preview Content */,
+				9792AF1925CEE25B00BBCAC6 /* UUIDConfig.swift */,
+				9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */,
 			);
 			path = "KUBTSS-BTViewer";
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9792AF0C25CEE0F500BBCAC6 /* ContentView.swift in Sources */,
+				9792AF1A25CEE25B00BBCAC6 /* UUIDConfig.swift in Sources */,
+				9792AF1D25CEE2D000BBCAC6 /* BluetoothManager.swift in Sources */,
 				9792AF0A25CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

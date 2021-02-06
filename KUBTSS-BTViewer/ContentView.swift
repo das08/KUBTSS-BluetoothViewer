@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import CoreBluetooth
+
+
 
 struct ContentView: View {
+    @ObservedObject private var bm = BluetoothManager()
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
+        Button(action: {
+            print("a")
+        }, label: {
+            Text("Button")
+        })
+        
     }
 }
