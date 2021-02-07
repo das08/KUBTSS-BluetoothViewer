@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		9792AF1125CEE0F900BBCAC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9792AF1025CEE0F900BBCAC6 /* Preview Assets.xcassets */; };
 		9792AF1A25CEE25B00BBCAC6 /* UUIDConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF1925CEE25B00BBCAC6 /* UUIDConfig.swift */; };
 		9792AF1D25CEE2D000BBCAC6 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */; };
+		9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF2525CF811A00BBCAC6 /* MainView.swift */; };
+		9792AF2A25CF830B00BBCAC6 /* Altimeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF2925CF830B00BBCAC6 /* Altimeter.swift */; };
+		9792AF3E25CFA1D600BBCAC6 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9792AF3D25CFA1D600BBCAC6 /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,8 @@
 		9792AF1225CEE0F900BBCAC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9792AF1925CEE25B00BBCAC6 /* UUIDConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDConfig.swift; sourceTree = "<group>"; };
 		9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		9792AF2525CF811A00BBCAC6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9792AF2925CF830B00BBCAC6 /* Altimeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Altimeter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9792AF3E25CFA1D600BBCAC6 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +62,7 @@
 		9792AF0825CEE0F500BBCAC6 /* KUBTSS-BTViewer */ = {
 			isa = PBXGroup;
 			children = (
+				9792AF2325CF80FF00BBCAC6 /* Views */,
 				9792AF0925CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift */,
 				9792AF0B25CEE0F500BBCAC6 /* ContentView.swift */,
 				9792AF0D25CEE0F900BBCAC6 /* Assets.xcassets */,
@@ -75,6 +82,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9792AF2325CF80FF00BBCAC6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9792AF2525CF811A00BBCAC6 /* MainView.swift */,
+				9792AF2925CF830B00BBCAC6 /* Altimeter.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,6 +107,9 @@
 			dependencies = (
 			);
 			name = "KUBTSS-BTViewer";
+			packageProductDependencies = (
+				9792AF3D25CFA1D600BBCAC6 /* SwiftUICharts */,
+			);
 			productName = "KUBTSS-BTViewer";
 			productReference = 9792AF0625CEE0F500BBCAC6 /* KUBTSS-BTViewer.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +137,9 @@
 				Base,
 			);
 			mainGroup = 9792AEFD25CEE0F500BBCAC6;
+			packageReferences = (
+				9792AF3C25CFA1D600BBCAC6 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 9792AF0725CEE0F500BBCAC6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -147,7 +169,9 @@
 				9792AF0C25CEE0F500BBCAC6 /* ContentView.swift in Sources */,
 				9792AF1A25CEE25B00BBCAC6 /* UUIDConfig.swift in Sources */,
 				9792AF1D25CEE2D000BBCAC6 /* BluetoothManager.swift in Sources */,
+				9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */,
 				9792AF0A25CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift in Sources */,
+				9792AF2A25CF830B00BBCAC6 /* Altimeter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9792AF3C25CFA1D600BBCAC6 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/das08/ChartView";
+			requirement = {
+				kind = revision;
+				revision = 5dcaecef31bc1fe0d1c82491fe341b98a20dac93;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9792AF3D25CFA1D600BBCAC6 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9792AF3C25CFA1D600BBCAC6 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9792AEFE25CEE0F500BBCAC6 /* Project object */;
 }
