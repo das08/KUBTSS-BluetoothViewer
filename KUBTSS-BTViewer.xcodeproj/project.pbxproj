@@ -16,6 +16,8 @@
 		9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF2525CF811A00BBCAC6 /* MainView.swift */; };
 		9792AF2A25CF830B00BBCAC6 /* Altimeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF2925CF830B00BBCAC6 /* Altimeter.swift */; };
 		9792AF3E25CFA1D600BBCAC6 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9792AF3D25CFA1D600BBCAC6 /* SwiftUICharts */; };
+		9792AF4625CFA6CF00BBCAC6 /* Rotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF4525CFA6CF00BBCAC6 /* Rotator.swift */; };
+		9792AF4925CFAB4E00BBCAC6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF4825CFAB4E00BBCAC6 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		9792AF1C25CEE2D000BBCAC6 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		9792AF2525CF811A00BBCAC6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9792AF2925CF830B00BBCAC6 /* Altimeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Altimeter.swift; sourceTree = "<group>"; };
+		9792AF4525CFA6CF00BBCAC6 /* Rotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotator.swift; sourceTree = "<group>"; };
+		9792AF4825CFAB4E00BBCAC6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 			children = (
 				9792AF2525CF811A00BBCAC6 /* MainView.swift */,
 				9792AF2925CF830B00BBCAC6 /* Altimeter.swift */,
+				9792AF4525CFA6CF00BBCAC6 /* Rotator.swift */,
+				9792AF4825CFAB4E00BBCAC6 /* SettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,7 +177,9 @@
 				9792AF1D25CEE2D000BBCAC6 /* BluetoothManager.swift in Sources */,
 				9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */,
 				9792AF0A25CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift in Sources */,
+				9792AF4925CFAB4E00BBCAC6 /* SettingView.swift in Sources */,
 				9792AF2A25CF830B00BBCAC6 /* Altimeter.swift in Sources */,
+				9792AF4625CFA6CF00BBCAC6 /* Rotator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

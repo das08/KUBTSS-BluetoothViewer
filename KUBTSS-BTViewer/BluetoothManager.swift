@@ -110,13 +110,22 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         switch characteristic.uuid {
         case pUUID.char_altimeter:
             print(decodeBytes(from: characteristic) )
-            altimeter = decodeBytes(from: characteristic)
+//            altimeter = decodeBytes(from: characteristic)
+            altimeter = isValidBytes(from: characteristic) ? "Available": "----"
         case pUUID.char_gps:
             print(decodeBytes(from: characteristic) )
-            gps = decodeBytes(from: characteristic)
+//            gps = decodeBytes(from: characteristic)
+            gps = isValidBytes(from: characteristic) ? "Available": "----"
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
+    }
+    
+    private func isValidBytes(from characteristic: CBCharacteristic) -> Bool {
+        guard let characteristicData = characteristic.value,
+              let _ = characteristicData.first else { return false }
+        
+        return true
     }
     
     private func decodeBytes(from characteristic: CBCharacteristic) -> String {

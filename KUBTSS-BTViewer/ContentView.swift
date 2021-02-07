@@ -21,7 +21,7 @@ struct ContentView: View {
                         Text("計器類")
                     }
                 }.tag(1)
-            AltimeterGraphView()
+            SettingView()
                 .tabItem {
                     VStack {
                         Image(systemName: "gear")
