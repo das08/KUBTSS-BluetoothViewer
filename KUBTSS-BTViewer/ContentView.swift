@@ -10,7 +10,7 @@ import CoreBluetooth
 
 
 struct ContentView: View {
-    @ObservedObject private var bm = BluetoothManager()
+//    @ObservedObject private var bm = BluetoothManager()
     
     var body: some View {
         TabView {
