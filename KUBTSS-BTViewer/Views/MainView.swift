@@ -16,22 +16,28 @@ struct MainView: View {
         VStack {
             TabView(selection: $selectedTab) {
                 VStack {
-                    Text(bm.status)
-                        .padding()
+                    Text(self.bm.stateText)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
                     Text("Device name: \(bm.deviceName)")
                         .bold()
                         .padding()
                     HStack{
+//                        Button(action: {
+//                            bm.connectPeripheral()
+//                        }, label: {
+//                            Text("接続する")
+//                        })
                         Button(action: {
-                            bm.connectPeripheral()
-                        }, label: {
-                            Text("接続する")
+                            self.bm.buttonPushed()
                         })
-                        Button(action: {
-                            bm.disconnectPeripheral()
-                        }, label: {
-                            Text("切断する")
-                        })
+                        {
+                            Text(self.bm.buttonText)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.blue, lineWidth: 1))
+                        }
                     }
                     
                     HStack {
@@ -53,7 +59,7 @@ struct MainView: View {
                 .tabItem { Image(systemName:"waveform.path.ecg.rectangle"); Text("接続情報")}.tag(1)
                 
                 VStack {
-                    AltimeterGraphView()
+                    AltimeterGraphView().environmentObject(bm)
                 }
                 .tabItem { Image(systemName:"chart.bar.xaxis"); Text("高度計") }.tag(2)
                 
