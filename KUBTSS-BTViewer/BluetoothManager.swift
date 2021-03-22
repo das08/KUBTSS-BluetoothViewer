@@ -16,20 +16,28 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     @Published var state:Bluestate = .POWERED_OFF
     @Published var deviceName:String = "----"
     @Published var altimeter:String = "----"
+    @Published var rotation:String = "----"
+    @Published var airspeed:String = "----"
     @Published var gps:String = "----"
     @Published var buttonText:String = "検索できません"
     @Published var stateText:String = "Bluetoothが使用できません"
     @Published var resultText:String = ""
     @Published var CONNECTED:Bool = false
     @Published var AltimeterData:[Double] = []
+    @Published var RotationData:[Double] = []
+    @Published var AirspeedData:[Double] = []
     @Published var GPSData:[Int] = []
     
     var centralMg: CBCentralManager?
     var kubtssMainPeripheral: CBPeripheral?
     var SERVICE_UUID:CBUUID!
     var Altimeter_UUID:CBUUID!
+    var Rotation_UUID:CBUUID!
+    var Airspeed_UUID:CBUUID!
     var GPS_UUID:CBUUID!
     var Altimeter_CHAR:CBCharacteristic?
+    var Rotation_CHAR:CBCharacteristic?
+    var Airspeed_CHAR:CBCharacteristic?
     var GPS_CHAR:CBCharacteristic?
     var SCAN_TIMER:Timer?
     var CONNECT_TIMER:Timer?
@@ -40,8 +48,12 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         kubtssMainPeripheral = nil
         SERVICE_UUID = config.service
         Altimeter_UUID = config.char_altimeter
+        Rotation_UUID = config.char_rotation
+        Airspeed_UUID = config.char_airspeed
         GPS_UUID = config.char_gps
         Altimeter_CHAR=nil
+        Rotation_CHAR=nil
+        Airspeed_CHAR=nil
         GPS_CHAR=nil
         SCAN_TIMER = nil
         CONNECT_TIMER = nil
@@ -180,6 +192,8 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         }
         GPS_CHAR = nil
         Altimeter_CHAR=nil
+        Rotation_CHAR=nil
+        Airspeed_CHAR=nil
         CONNECTED = false
     }
     
@@ -302,6 +316,24 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             AltimeterData.append(tmp)
             altimeter = decodeBytes(from: characteristic)
             altimeter = isValidBytes(from: characteristic) ? "Available": "----"
+        case Rotation_UUID:
+            print("Rotation: \(decodeBytes(from: characteristic))" )
+            if RotationData.count == 10{
+                RotationData.removeFirst()
+            }
+            let tmp = Double(decodeBytes(from: characteristic))!
+            RotationData.append(tmp)
+            rotation = decodeBytes(from: characteristic)
+            rotation = isValidBytes(from: characteristic) ? "Available": "----"
+        case Airspeed_UUID:
+            print("Airspeed: \(decodeBytes(from: characteristic))" )
+            if AirspeedData.count == 10{
+                AirspeedData.removeFirst()
+            }
+            let tmp = Double(decodeBytes(from: characteristic))!
+            AirspeedData.append(tmp)
+            airspeed = decodeBytes(from: characteristic)
+            airspeed = isValidBytes(from: characteristic) ? "Available": "----"
         case GPS_UUID:
             print("GPS: \(decodeBytes(from: characteristic))" )
             gps = isValidBytes(from: characteristic) ? "Available": "----"

@@ -46,17 +46,23 @@ struct MainView: View {
                         Spacer()
                         Text(bm.gps)
                     }
-                    .padding(30)
+                    .padding(20)
                     
                     HStack {
-                        Image(systemName: "rotate.left")
+                        Image(systemName: "arrow.clockwise.circle")
                         Text("回転数計").padding(10)
                         Spacer()
                         Text(bm.altimeter)
                     }
-                    .padding(30)
+                    .padding(20)
                     
-                    
+                    HStack {
+                        Image(systemName: "airplane")
+                        Text("気速計").padding(10)
+                        Spacer()
+                        Text(bm.altimeter)
+                    }
+                    .padding(20)
                     
                 }
                 .tabItem { Image(systemName:"waveform.path.ecg.rectangle"); Text("接続情報")}.tag(1)
@@ -67,7 +73,7 @@ struct MainView: View {
                 .tabItem { Image(systemName:"chart.bar.xaxis"); Text("高度計") }.tag(2)
                 
                 VStack {
-                    RotatorGraphView()
+                    RotationGraphView().environmentObject(bm)
                 }
                 .tabItem { Image(systemName:"chart.bar.xaxis"); Text("回転数計") }.tag(3)
                 
