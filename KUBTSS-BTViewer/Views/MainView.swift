@@ -44,7 +44,7 @@ struct MainView: View {
                         Image(systemName: "speedometer")
                         Text("高度計").padding(10)
                         Spacer()
-                        Text(bm.gps)
+                        Text(bm.altimeter)
                     }
                     .padding(20)
                     
@@ -52,7 +52,7 @@ struct MainView: View {
                         Image(systemName: "arrow.clockwise.circle")
                         Text("回転数計").padding(10)
                         Spacer()
-                        Text(bm.altimeter)
+                        Text(bm.rotation)
                     }
                     .padding(20)
                     
@@ -60,7 +60,7 @@ struct MainView: View {
                         Image(systemName: "airplane")
                         Text("気速計").padding(10)
                         Spacer()
-                        Text(bm.altimeter)
+                        Text(bm.airspeed)
                     }
                     .padding(20)
                     

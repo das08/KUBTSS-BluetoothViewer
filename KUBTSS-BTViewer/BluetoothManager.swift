@@ -315,7 +315,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             let tmp = Double(decodeBytes(from: characteristic))!
             AltimeterData.append(tmp)
             altimeter = decodeBytes(from: characteristic)
-            altimeter = isValidBytes(from: characteristic) ? "Available": "----"
+            altimeter = isValidBytes(from: characteristic) ? "\(tmp) m": "----"
         case Rotation_UUID:
             print("Rotation: \(decodeBytes(from: characteristic))" )
             if RotationData.count == 10{
@@ -324,7 +324,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             let tmp = Double(decodeBytes(from: characteristic))!
             RotationData.append(tmp)
             rotation = decodeBytes(from: characteristic)
-            rotation = isValidBytes(from: characteristic) ? "Available": "----"
+            rotation = isValidBytes(from: characteristic) ? "\(tmp) rpm": "----"
         case Airspeed_UUID:
             print("Airspeed: \(decodeBytes(from: characteristic))" )
             if AirspeedData.count == 10{
@@ -333,7 +333,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             let tmp = Double(decodeBytes(from: characteristic))!
             AirspeedData.append(tmp)
             airspeed = decodeBytes(from: characteristic)
-            airspeed = isValidBytes(from: characteristic) ? "Available": "----"
+            airspeed = isValidBytes(from: characteristic) ? "\(tmp) m/s": "----"
         case GPS_UUID:
             print("GPS: \(decodeBytes(from: characteristic))" )
             gps = isValidBytes(from: characteristic) ? "Available": "----"
