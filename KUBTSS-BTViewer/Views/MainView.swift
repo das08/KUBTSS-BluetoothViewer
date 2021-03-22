@@ -55,6 +55,9 @@ struct MainView: View {
                         Text(bm.altimeter)
                     }
                     .padding(30)
+                    
+                    
+                    
                 }
                 .tabItem { Image(systemName:"waveform.path.ecg.rectangle"); Text("接続情報")}.tag(1)
                 

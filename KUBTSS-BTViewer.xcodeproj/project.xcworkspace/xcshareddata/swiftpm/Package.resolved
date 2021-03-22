@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/das08/ChartView",
+        "state": {
+          "branch": null,
+          "revision": "5dcaecef31bc1fe0d1c82491fe341b98a20dac93",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
