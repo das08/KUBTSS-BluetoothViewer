@@ -21,6 +21,7 @@
 		9792AF6F25D61E0D00BBCAC6 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF6E25D61E0D00BBCAC6 /* AppStorage.swift */; };
 		9792AF7225D6223B00BBCAC6 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF7125D6223B00BBCAC6 /* model.swift */; };
 		9792AF7525D626B500BBCAC6 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF7425D626B500BBCAC6 /* RecordData.swift */; };
+		97DA09972608C39B00609094 /* Airspeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA09962608C39B00609094 /* Airspeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9792AF6E25D61E0D00BBCAC6 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		9792AF7125D6223B00BBCAC6 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		9792AF7425D626B500BBCAC6 /* RecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordData.swift; sourceTree = "<group>"; };
+		97DA09962608C39B00609094 /* Airspeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airspeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				9792AF2925CF830B00BBCAC6 /* Altimeter.swift */,
 				9792AF4525CFA6CF00BBCAC6 /* Rotation.swift */,
 				9792AF4825CFAB4E00BBCAC6 /* SettingView.swift */,
+				97DA09962608C39B00609094 /* Airspeed.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */,
 				9792AF0A25CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift in Sources */,
 				9792AF7225D6223B00BBCAC6 /* model.swift in Sources */,
+				97DA09972608C39B00609094 /* Airspeed.swift in Sources */,
 				9792AF4925CFAB4E00BBCAC6 /* SettingView.swift in Sources */,
 				9792AF7525D626B500BBCAC6 /* RecordData.swift in Sources */,
 				9792AF6F25D61E0D00BBCAC6 /* AppStorage.swift in Sources */,

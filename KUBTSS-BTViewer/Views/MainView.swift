@@ -77,6 +77,11 @@ struct MainView: View {
                 }
                 .tabItem { Image(systemName:"chart.bar.xaxis"); Text("回転数計") }.tag(3)
                 
+                VStack {
+                    AirspeedGraphView().environmentObject(bm)
+                }
+                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("気速計") }.tag(4)
+                
                 
             }
             
