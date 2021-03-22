@@ -41,26 +41,41 @@ struct MainView: View {
                     }
                     
                     HStack {
-                        Image(systemName: "speedometer")
-                        Text("高度計").padding(10)
-                        Spacer()
-                        Text(bm.altimeter)
+                        VStack{
+                            HStack{
+                                Image(systemName: "speedometer")
+                                Text("高度計").padding(10)
+                            }
+                            Text(bm.altimeter)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                        }
                     }
                     .padding(20)
                     
                     HStack {
-                        Image(systemName: "arrow.clockwise.circle")
-                        Text("回転数計").padding(10)
-                        Spacer()
-                        Text(bm.rotation)
+                        VStack{
+                            HStack{
+                                Image(systemName: "arrow.clockwise.circle")
+                                Text("回転数計").padding(10)
+                            }
+                            Text(bm.rotation)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                        }
                     }
                     .padding(20)
                     
                     HStack {
-                        Image(systemName: "airplane")
-                        Text("気速計").padding(10)
-                        Spacer()
-                        Text(bm.airspeed)
+                        VStack{
+                            HStack{
+                                Image(systemName: "airplane")
+                                Text("気速計").padding(10)
+                            }
+                            Text(bm.airspeed)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                        }
                     }
                     .padding(20)
                     
