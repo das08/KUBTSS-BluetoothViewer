@@ -47,7 +47,7 @@ struct MainView: View {
                                 Text("高度計").padding(10)
                             }
                             Text(bm.altimeter)
-                                .font(.largeTitle)
+                                .font(.system(size: 55))
                                 .fontWeight(.bold)
                         }
                     }
@@ -60,7 +60,7 @@ struct MainView: View {
                                 Text("回転数計").padding(10)
                             }
                             Text(bm.rotation)
-                                .font(.largeTitle)
+                                .font(.system(size: 55))
                                 .fontWeight(.bold)
                         }
                     }
@@ -73,11 +73,13 @@ struct MainView: View {
                                 Text("気速計").padding(10)
                             }
                             Text(bm.airspeed)
-                                .font(.largeTitle)
+                                .font(.system(size: 55))
                                 .fontWeight(.bold)
                         }
                     }
                     .padding(20)
+                    
+//                    Spacer()
                     
                 }
                 .tabItem { Image(systemName:"waveform.path.ecg.rectangle"); Text("接続情報")}.tag(1)
@@ -96,6 +98,8 @@ struct MainView: View {
                     AirspeedGraphView().environmentObject(bm)
                 }
                 .tabItem { Image(systemName:"chart.bar.xaxis"); Text("気速計") }.tag(4)
+                
+                
                 
                 
             }
