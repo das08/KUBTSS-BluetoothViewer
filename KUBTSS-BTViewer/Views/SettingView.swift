@@ -59,17 +59,17 @@ struct SettingView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.blue, lineWidth: 1))
                     }
-                    Button(action: {
-                        let a = SaveToStorage.shared.deleteAll()
-                        datas = LoadFromStorage.shared.loadData()
-                    })
-                    {
-                        Text("reset")
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.blue, lineWidth: 1))
-                    }
+//                    Button(action: {
+//                        let a = SaveToStorage.shared.deleteAll()
+//                        datas = LoadFromStorage.shared.loadData()
+//                    })
+//                    {
+//                        Text("reset")
+//                            .padding()
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.blue, lineWidth: 1))
+//                    }
                 }
             }
             .navigationBarTitle("設定")
