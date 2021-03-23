@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>京バ電装アプリ</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,9 +20,15 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Using Bluetooth to aquire sensor data.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Using Bluetooth to aquire sensor data.</string>
+	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

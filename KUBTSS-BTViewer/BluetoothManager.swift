@@ -83,6 +83,9 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         case .CONNECTING:
             self.buttonText = "接続キャンセル"
             self.stateText += "\n" + "接続中..."
+            altimeter = "----"
+            rotation = "----"
+            airspeed = "----"
         break
         case .CONNECT_TIMEOUT:
             self.buttonText = "検索する"
@@ -90,6 +93,9 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         break
         case .CONNECT_ERROR, .CONNECT_CLOSE:
             self.buttonText = "検索する"
+            altimeter = "----"
+            rotation = "----"
+            airspeed = "----"
         break
         case .CONNECT_OK:
             self.buttonText = "切断する"
@@ -122,9 +128,6 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             disconnectPeripheral()
             self.state = .CONNECT_CLOSE
             self.stateText += "\n接続を切断しました"
-            altimeter = "----"
-            rotation = "----"
-            airspeed = "----"
             updateStatus()
         break
         }
