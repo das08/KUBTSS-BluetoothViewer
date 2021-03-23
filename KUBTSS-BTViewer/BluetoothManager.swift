@@ -122,6 +122,9 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             disconnectPeripheral()
             self.state = .CONNECT_CLOSE
             self.stateText += "\n接続を切断しました"
+            altimeter = "----"
+            rotation = "----"
+            airspeed = "----"
             updateStatus()
         break
         }
@@ -216,7 +219,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     // connect peripheral NG
     func centralManager( _ central:CBCentralManager,didFailToConnect peripheral:CBPeripheral,error:Error? ) {
         print("didFailToConnect")
-        self.stateText += "エラー発生"
+        self.stateText = "エラー発生"
         if let e = error{
             self.stateText += "\n" + e.localizedDescription
         }
@@ -230,7 +233,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     func peripheral( _ peripheral:CBPeripheral,didDiscoverServices error:Error? ) {
         print("didDiscoverServices")
         if error != nil {
-            self.stateText += "エラー発生"
+            self.stateText = "エラー発生"
             self.stateText += "\n" + error.debugDescription
             self.state = .CONNECT_ERROR
             disconnectPeripheral()
@@ -238,7 +241,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             return
         }
         if peripheral.services == nil || peripheral.services?.first == nil {
-            self.stateText += "エラー発生"
+            self.stateText = "エラー発生"
             self.stateText += "\n" + "ble error empty peripheral.services"
             self.state = .CONNECT_ERROR
             disconnectPeripheral()
@@ -256,7 +259,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     func peripheral( _ peripheral:CBPeripheral,didDiscoverCharacteristicsFor service:CBService,error:Error? ) {
         print("didDiscoverCharacteristicsFor")
         if error != nil {
-            self.stateText += "エラー発生"
+            self.stateText = "エラー発生"
             self.stateText += "\n" + error.debugDescription
             self.state = .CONNECT_ERROR
             disconnectPeripheral()
@@ -264,7 +267,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             return
         }
         if service.characteristics == nil || service.characteristics?.first == nil {
-            self.stateText += "エラー発生"
+            self.stateText = "エラー発生"
             self.stateText += "\n" + "ble error empty service.characteristics"
             self.state = .CONNECT_ERROR
             disconnectPeripheral()
@@ -278,7 +281,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
                 peripheral.setNotifyValue(true, for: char)
             }
         }
-        self.stateText += "接続しました"
+        self.stateText = "接続しました"
         self.deviceName = peripheral.name!
         self.state = .CONNECT_OK
         self.resultText = ""
@@ -299,7 +302,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         disconnectPeripheral()
         if gonotify {
             self.state = .CONNECT_CLOSE
-            self.stateText += "\n" + "接続が切断されました"
+            self.stateText = "接続が切断されました"
             updateStatus()
         }
     }
