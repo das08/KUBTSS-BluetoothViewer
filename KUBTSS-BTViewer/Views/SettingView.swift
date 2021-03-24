@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State var showData = false
-    @State var datas = LoadFromStorage.shared.loadData()
+    @State var datas = LoadFromStorage2.shared.loadData()
     var body: some View {
         NavigationView {
             List {
@@ -31,7 +31,7 @@ struct SettingView: View {
                 Section(header: Text("デバッグ")) {
                     Button(action: {
                         
-                        self.datas = LoadFromStorage.shared.loadData()
+                        self.datas = LoadFromStorage2.shared.loadData()
                         
                     })
                     {
@@ -43,13 +43,13 @@ struct SettingView: View {
                     }
                     
                     Button(action: {
-                        let a = LoadFromStorage.shared.loadData()
+                        let a = LoadFromStorage2.shared.loadData()
                         for i in a{
                             print("\(i.id)")
                             print("Filename: \(i.fileName)")
-                            print("RawData: \(i.rawData)")
-                            print("adjust: \(i.adjustData)")
-                            print("timestamp: \(i.aquiredTime)")
+//                            print("RawData: \(i.rawData)")
+//                            print("adjust: \(i.adjustData)")
+//                            print("timestamp: \(i.aquiredTime)")
                         }
                     })
                     {
@@ -59,17 +59,17 @@ struct SettingView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.blue, lineWidth: 1))
                     }
-//                    Button(action: {
-//                        let a = SaveToStorage.shared.deleteAll()
-//                        datas = LoadFromStorage.shared.loadData()
-//                    })
-//                    {
-//                        Text("reset")
-//                            .padding()
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 10)
-//                                    .stroke(Color.blue, lineWidth: 1))
-//                    }
+                    Button(action: {
+                        let a = SaveToStorage2.shared.deleteAll()
+                        datas = LoadFromStorage2.shared.loadData()
+                    })
+                    {
+                        Text("reset")
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.blue, lineWidth: 1))
+                    }
                 }
             }
             .navigationBarTitle("設定")
@@ -78,17 +78,23 @@ struct SettingView: View {
 }
 
 struct DetailView: View {
-    var data: AltimeterData
+    var data: TFData
     
     var body: some View {
         VStack {
             Text(data.fileName).font(.headline)
             
             HStack {
-                Text("設定高度: \(data.adjustData) cm")
-                List(data.rawData, id: \.self) { item in
-                    Text("\(item) cm")
+//                List(data.altitude, id: \.self) { item in
+//                    Text("\(item) cm")
+//                }
+                List{
+                    Text("高度, 回転数")
+                    ForEach(Array(zip(data.altitude, data.rotation)), id: \.0) { item in
+                        Text("\(item.0) cm, \(item.1) rpm")
+                    }
                 }
+                
             }
             
             Spacer()

@@ -42,6 +42,13 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     var SCAN_TIMER:Timer?
     var CONNECT_TIMER:Timer?
     
+    var altitudeArr: [String]?
+    var rotationArr: [String]?
+    var airspeedArr: [String]?
+    var altitudeCount = 0
+    var rotationCount = 0
+    var airspeedCount = 0
+    
     override init() {
         super.init()
         centralMg = CBCentralManager(delegate: self, queue: nil)
@@ -57,6 +64,9 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
         GPS_CHAR=nil
         SCAN_TIMER = nil
         CONNECT_TIMER = nil
+        altitudeArr = []
+        rotationArr = []
+        airspeedArr = []
     }
     
     func updateStatus() {
@@ -129,6 +139,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             disconnectPeripheral()
             self.state = .CONNECT_CLOSE
             self.stateText += "\n接続を切断しました"
+            recordData()
             updateStatus()
         break
         }
@@ -313,6 +324,10 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
                     error: Error?) {
+        if (altitudeArr!.count > 10000 || rotationArr!.count > 10000 || airspeedArr!.count > 10000){
+            print("たまりすぎやで")
+            recordData()
+        }
         switch characteristic.uuid {
         case Altimeter_UUID:
             print("Altimeter: \(decodeBytes(from: characteristic))" )
@@ -323,6 +338,14 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             AltimeterData.append(tmp)
             altimeter = decodeBytes(from: characteristic)
             altimeter = isValidBytes(from: characteristic) ? "\(tmp) cm": "----"
+            
+            altitudeCount += 1
+            if(altitudeCount > 5){
+                altitudeArr?.append("\(tmp)")
+                altitudeCount = 0
+            }
+            
+            
         case Rotation_UUID:
             print("Rotation: \(decodeBytes(from: characteristic))" )
             if RotationData.count == 10{
@@ -332,6 +355,13 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             RotationData.append(tmp)
             rotation = decodeBytes(from: characteristic)
             rotation = isValidBytes(from: characteristic) ? "\(tmp) rpm": "----"
+            
+            rotationCount += 1
+            if(rotationCount > 5){
+                rotationArr?.append("\(tmp)")
+                rotationCount = 0
+            }
+            
         case Airspeed_UUID:
             print("Airspeed: \(decodeBytes(from: characteristic))" )
             if AirspeedData.count == 10{
@@ -341,6 +371,11 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             AirspeedData.append(tmp)
             airspeed = decodeBytes(from: characteristic)
             airspeed = isValidBytes(from: characteristic) ? "\(tmp) m/s": "----"
+            airspeedCount += 1
+            if(airspeedCount > 5){
+                airspeedArr?.append("\(tmp)")
+                airspeedCount = 0
+            }
         case GPS_UUID:
             print("GPS: \(decodeBytes(from: characteristic))" )
             gps = isValidBytes(from: characteristic) ? "Available": "----"
@@ -373,6 +408,16 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
 //        print(value)
         return "\(value)"
     }
+    
+    func recordData(){
+        let id = DateUtils.stringFromDate(date:Date(), format: "yyyy-MM-dd HH:mm:ss")
+        let tmpData = TFData(id:UUID().uuidString, fileName: id, altitude: altitudeArr!, rotation: rotationArr!, airspeed: airspeedArr!, aquiredTime: Date())
+        SaveToStorage2.shared.saveData(data: [tmpData])
+        altitudeArr = []
+        rotationArr = []
+        airspeedArr = []
+    }
+    
 }
 
 
@@ -388,4 +433,20 @@ enum Bluestate : Int {
     CONNECT_ERROR,
     CONNECT_CLOSE,
     CONNECT_OK
+}
+
+class DateUtils {
+    class func dateFromString(string: String, format: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.date(from: string)!
+    }
+
+    class func stringFromDate(date: Date, format: String) -> String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
 }

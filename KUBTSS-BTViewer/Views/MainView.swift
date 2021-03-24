@@ -84,20 +84,20 @@ struct MainView: View {
                 }
                 .tabItem { Image(systemName:"waveform.path.ecg.rectangle"); Text("接続情報")}.tag(1)
                 
-                VStack {
-                    AltimeterGraphView().environmentObject(bm)
-                }
-                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("高度計") }.tag(2)
-                
-                VStack {
-                    RotationGraphView().environmentObject(bm)
-                }
-                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("回転数計") }.tag(3)
-                
-                VStack {
-                    AirspeedGraphView().environmentObject(bm)
-                }
-                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("気速計") }.tag(4)
+//                VStack {
+//                    AltimeterGraphView().environmentObject(bm)
+//                }
+//                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("高度計") }.tag(2)
+//
+//                VStack {
+//                    RotationGraphView().environmentObject(bm)
+//                }
+//                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("回転数計") }.tag(3)
+//
+//                VStack {
+//                    AirspeedGraphView().environmentObject(bm)
+//                }
+//                .tabItem { Image(systemName:"chart.bar.xaxis"); Text("気速計") }.tag(4)
                 
                 
                 

@@ -22,6 +22,7 @@
 		9792AF7225D6223B00BBCAC6 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF7125D6223B00BBCAC6 /* model.swift */; };
 		9792AF7525D626B500BBCAC6 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9792AF7425D626B500BBCAC6 /* RecordData.swift */; };
 		97DA09972608C39B00609094 /* Airspeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA09962608C39B00609094 /* Airspeed.swift */; };
+		97DA09A4260AD66100609094 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DA09A3260AD66100609094 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		9792AF7125D6223B00BBCAC6 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		9792AF7425D626B500BBCAC6 /* RecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordData.swift; sourceTree = "<group>"; };
 		97DA09962608C39B00609094 /* Airspeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airspeed.swift; sourceTree = "<group>"; };
+		97DA09A3260AD66100609094 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				9792AF2525CF811A00BBCAC6 /* MainView.swift */,
+				97DA09A3260AD66100609094 /* GraphView.swift */,
 				9792AF2925CF830B00BBCAC6 /* Altimeter.swift */,
 				9792AF4525CFA6CF00BBCAC6 /* Rotation.swift */,
 				9792AF4825CFAB4E00BBCAC6 /* SettingView.swift */,
@@ -190,6 +193,7 @@
 				9792AF2625CF811A00BBCAC6 /* MainView.swift in Sources */,
 				9792AF0A25CEE0F500BBCAC6 /* KUBTSS_BTViewerApp.swift in Sources */,
 				9792AF7225D6223B00BBCAC6 /* model.swift in Sources */,
+				97DA09A4260AD66100609094 /* GraphView.swift in Sources */,
 				97DA09972608C39B00609094 /* Airspeed.swift in Sources */,
 				9792AF4925CFAB4E00BBCAC6 /* SettingView.swift in Sources */,
 				9792AF7525D626B500BBCAC6 /* RecordData.swift in Sources */,
@@ -324,7 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"KUBTSS-BTViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = V6B4TS7288;
 				ENABLE_PREVIEWS = YES;
@@ -347,7 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"KUBTSS-BTViewer/Preview Content\"";
 				DEVELOPMENT_TEAM = V6B4TS7288;
 				ENABLE_PREVIEWS = YES;
