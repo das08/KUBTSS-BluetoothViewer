@@ -96,6 +96,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             altimeter = "----"
             rotation = "----"
             airspeed = "----"
+            self.deviceName = "----"
         break
         case .CONNECT_OK:
             self.buttonText = "切断する"
@@ -321,7 +322,7 @@ final class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelega
             let tmp = Double(decodeBytes(from: characteristic))!
             AltimeterData.append(tmp)
             altimeter = decodeBytes(from: characteristic)
-            altimeter = isValidBytes(from: characteristic) ? "\(tmp) m": "----"
+            altimeter = isValidBytes(from: characteristic) ? "\(tmp) cm": "----"
         case Rotation_UUID:
             print("Rotation: \(decodeBytes(from: characteristic))" )
             if RotationData.count == 10{
